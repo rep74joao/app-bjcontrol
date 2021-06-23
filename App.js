@@ -15,7 +15,7 @@ import { primary } from './src/config';
 
 console.tron = Reactotron.setAsyncStorageHandler(AsyncStorage)
     .configure({
-      host:'192.168.0.113'
+      host:'172.16.0.200'
     })
     .useReactNative()
     .connect();
