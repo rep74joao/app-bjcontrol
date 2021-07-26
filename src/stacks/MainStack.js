@@ -33,6 +33,8 @@ import Garantia from '../screens/Garantia'
 
 import Vendas from '../screens/Vendas'
 
+import Dashboard from '../screens/Dashboard'
+
 const Stack = createStackNavigator();
 
 
@@ -159,11 +161,11 @@ export default () => (
           
             })}/>
         <Stack.Screen
-            name={'ContasReceber'}
-            component={ContasReceber}
+            name={'Dashboard'}
+            component={Dashboard}
             options={({navigation}) => ({
-                title:'Contas a Receber',
-          
+                title:'Dashboard',
+                
             })}/>
 
 

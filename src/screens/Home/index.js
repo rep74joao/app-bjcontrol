@@ -18,6 +18,7 @@ import {ContainerDados,
 import CodigoIcon from '../../assets/barcode.svg';
 import ProdutosIcon from '../../assets/compras.svg';
 import ClientesIcon from '../../assets/person.svg';
+import DashboardIcon from '../../assets/dashboard.svg'
 import SairIcon from '../../assets/sair.svg';
 import LotesIcon from '../../assets/lote.svg'
 import ContasReceberIcon from '../../assets/contasReceber.svg'
@@ -222,10 +223,10 @@ const Home = ({navigation}) => {
                             <TitleOperacao>Requisição</TitleOperacao>
                         </Operacao>
                         <Operacao
-                            onPress={() => navigation.navigate('Relatorios')}
+                            onPress={() => navigation.navigate('Dashboard')}
                             style={sombra}>
-                            <ProdutosIcon width={23} height={23} fill={'#00435a'}/>
-                            <TitleOperacao>Relatórios</TitleOperacao>
+                            <DashboardIcon width={21} height={21} fill={'#00435a'}/>
+                            <TitleOperacao>Dashboard</TitleOperacao>
                         </Operacao>
                       
                     </ViewOperacoes>
