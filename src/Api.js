@@ -28,6 +28,35 @@ const apiImg = axios.create({
 
 
 export default {
+    Dashboard: async (data) => {
+        try{
+            const res = await api.post('/dashboard', data);
+           
+            if(res.data.error){
+                return Alert.alert('Atenção', 'Usuario sem permissao!');
+            }else{
+                return res.data;
+            }
+           
+        }catch (e){
+            Alert.alert('Atenção', 'servidor fora do ar!');
+            return;
+        }
+    },
+    DashboardContasReceber: async (data) => {
+        try{
+            const res = await api.post('/dashboard-contasreceber', data);
+            if(res.data.error){
+                return Alert.alert('Atenção', 'Usuario sem permissao!');
+            }else{
+                return res.data;
+            }
+           
+        }catch (e){
+            Alert.alert('Atenção', 'servidor fora do ar!');
+            return;
+        }
+    },
     DashboardContasPagar: async (data) => {
         try{
             const res = await api.post('/dashboard-contaspagar', data);

@@ -1,7 +1,9 @@
 import styled from 'styled-components/native'
 import { secundary, primary } from '../../config';
 
-export const Container = styled.ScrollView`
+export default{
+
+  Container: styled.ScrollView`
   
   width: 100%;
   background-color: #fff;
@@ -9,18 +11,18 @@ export const Container = styled.ScrollView`
 
   flex:1;
 
-`
+`,
 
 
-export const ViewModalDashboard = styled.View`
+ViewModalDashboard: styled.View`
   height:100%;
   width: 100%;
   top:0;
   background-color:#fff;
 
-`
+`,
 
-export const Close = styled.TouchableOpacity`
+Close: styled.TouchableOpacity`
   width: 35px;
   height: 35px;
   align-items:center;
@@ -31,15 +33,15 @@ export const Close = styled.TouchableOpacity`
   border-radius:20px;
   left: 20px;
   z-index:99;
-`
+`,
 
-export const TextClose = styled.Text`
+TextClose: styled.Text`
   font-size: 20px;
   padding:5px;
   color: ${secundary};
-`
+`,
 
-export const Title = styled.Text`
+Title: styled.Text`
   font-size: 19px;
   margin-left: 15px;
   font-weight: bold; 
@@ -47,19 +49,19 @@ export const Title = styled.Text`
   margin-bottom: -5px;
   color: ${secundary};
  
-`
+`,
 
-export const TitleDepartamento = styled.Text`
+TitleDepartamento: styled.Text`
   font-size: 12px;
   text-align:center;
   line-height: 13px;
   color: #00435a;
   font-weight: bold;
   
-`
+`,
 
 
-export const Departamento = styled.TouchableOpacity`
+Departamento: styled.TouchableOpacity`
   width: 65px;
   height: 65px;
   align-items:center;
@@ -71,12 +73,16 @@ export const Departamento = styled.TouchableOpacity`
  
 
 
-`
+`,
 
-export const ViewDepartamento = styled.View`
+ViewDepartamento: styled.View`
   margin-top: 10px;
    align-items:center;
   justify-content: flex-start;
   flex-direction: column;
   margin-left: 20px;
-`
+`,
+
+
+}
+
