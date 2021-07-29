@@ -309,6 +309,7 @@ const Dashboard = () => {
             )}
         </View>
       <Modal 
+
           animationType={'slide'}
           visible={menu}
           transparent={true}>
@@ -328,5 +329,7 @@ const Dashboard = () => {
 </S.Container>
     );
 }
+
+
 
 export default Dashboard;
