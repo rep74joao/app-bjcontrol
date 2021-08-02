@@ -42,6 +42,7 @@ export default () => (
     <Stack.Navigator
     screenOptions={{
         headerTintColor: secundary,
+        headerBackTitle: ' ',
         headerStyle: { backgroundColor: primary },
       }}
     >

@@ -14,7 +14,7 @@ export const Imgs = styled.View`
   flex: 1;
   margin: 30px 20px 20px 20px;
 `
-
+const ios = Platform.OS === 'ios' ? '37px' : '20px';
 
 export const Close = styled.TouchableOpacity`
   width: 35px;
@@ -22,7 +22,7 @@ export const Close = styled.TouchableOpacity`
   align-items:center;
   justify-content: center;
   position: absolute;
-  top: 20px;
+  top: ${ios};
   background-color:${primary};
   border-radius:20px;
   right: 20px;

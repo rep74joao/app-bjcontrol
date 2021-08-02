@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components/native'
 import {secundary} from '../../config'
+import { Platform } from 'react-native'
 
 export const Container = styled.View`
   position: absolute;
@@ -11,11 +12,12 @@ export const Container = styled.View`
   bottom: 0;
 
 `
+const ios = Platform.OS === 'ios' ? '62px 25px' : '25px';
 
 export const ContainerDados = styled.View`
   position: absolute;
   width: 100%;
-  padding: 25px;
+  padding: ${ios};
   background-color: transparent;
   height: 25%;
   top: 0;

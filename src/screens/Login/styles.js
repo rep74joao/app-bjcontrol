@@ -1,10 +1,13 @@
 import React from 'react';
 import styled from 'styled-components/native'
 import {backgroundHome} from '../../config';
+import { Platform } from 'react-native';
+
+const ios = Platform === 'ios' ? '70px' : '39px';
 
 export const Container = styled.SafeAreaView`
   flex: 1;
-  padding-top: 39px;
+  padding-top: ${ios};
   align-items: center;
   background-color: transparent;
   margin-top: 100px;

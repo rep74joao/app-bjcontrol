@@ -55,7 +55,8 @@ export default () => {
             <Gradient />
             <StatusBar barStyle={'dark-content'} backgroundColor={'#00435a'}/>
             <Container>            
-            <KeyboardAvoidingView style={{flex:1,width:'100%',alignItems:'center'}}  behavior={Platform.OS == 'ios' ? 'padding' : 'height'}>   
+            <KeyboardAvoidingView 
+                style={{flex:1,width:'100%',alignItems:'center'}}  behavior={Platform.OS == 'ios' ? 'padding' : 'height'}>   
                <Img source={Logo} width={100} height={180}/>
                 <InputArea>
                

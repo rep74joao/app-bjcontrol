@@ -32,11 +32,9 @@ import Input from '../../components/input'
 import RastreioIcon from '../../assets/editando.svg'
 import * as ImagePicker from 'expo-image-picker'
 import * as Permissions from 'expo-permissions'
-
-
 import Api from '../../Api'
 import {urlImgNserie } from "../../config";
-import { Modal, Alert, Image, View, ScrollView } from "react-native";
+import { Modal, Alert, Image, View, ScrollView, Platform, KeyboardAvoidingView } from "react-native";
 
 
 const NserieId = () => {
@@ -64,6 +62,18 @@ const NserieId = () => {
         }
         getNserie();
      },[route.params]);
+
+     useEffect(() => {
+        (async () => {
+           if (Platform.OS !== 'web') {
+            const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+            
+            if (status !== 'granted') {
+                Alert.alert('Sem permissões para acessar!');
+            }
+          }
+        })();
+      }, []);
 
      const sombra = {
         shadowOpacity: 0.5,
@@ -113,7 +123,7 @@ const NserieId = () => {
     }
 
     async function verifyPermissions(){
-        const res = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+        const res = await Permissions.askAsync(Permissions.CAMERA);
            if (res.status !== 'granted'){
                  Alert.alert('Sem permissões para usar a camera');
                  return false;
@@ -148,30 +158,29 @@ const NserieId = () => {
          ],)
      }
  
-     async function handleImageLibrary(){
+     const handleImageLibrary = async () => {
+        
          const result = await ImagePicker.launchImageLibraryAsync({
              mediaTypes: ImagePicker.MediaTypeOptions.All,
              allowsEditing: true,
              aspect: [1, 1],
              quality: 0.5,
          });
-
-        
+                 
          if (result.uri){
              setImage(result.uri);
              setImage1(result.uri);
              return;
          }
-         return;
+         
      }
 
      function getImgRastreio(i){
         setModalimg(true)
         setImg(i)
-        console.tron.log(i)
-
      }
 
+    const ios = Platform.OS === 'ios' ? 17 : 0;
 
     return (
         <>
@@ -183,28 +192,33 @@ const NserieId = () => {
                     visible={modalRastreio}
                     
                 >
-                    <Close onPress={() => setModalRastreio(false)}>
-                        <TextClose>X</TextClose>
-                    </Close>
-                    <Title>Inserir novo rastreamento</Title>
-                    <Imgs>
-                        <Image source={{uri: image}} width={100} height={100}/>
-                    </Imgs>
-                    
-                    <InputArea>
-                        <Input
-                            IconSvg={RastreioIcon} 
-                            onChangeText={(e) => setRastreio(e)}
-                            keyboardType={'default'}
-                            value={rastreio}
-                        />
-                        <BottomSubmit onPress={() => insertRastreio()}>
-                            <TextSubmit>Salvar Rastreio</TextSubmit>
-                        </BottomSubmit>
-                    </InputArea>
-                    <Imagens style={sombra} onPress={handlePicture}>
-                        <Img width={23} height={23} fill={'#fff'}/>
-                    </Imagens>
+                    <View style={{padding: ios, flex:1}}>
+                        <Close onPress={() => setModalRastreio(false)}>
+                            <TextClose>X</TextClose>
+                        </Close>
+                        <Title>Inserir novo rastreamento</Title>
+                        <Imgs>
+                            <Image source={{uri: image}} width={100} height={100}/>
+                        </Imgs>
+                        <Imagens style={sombra} onPress={handlePicture}>
+                            <Img width={23} height={23} fill={'#fff'}/>
+                        </Imagens>
+                        <KeyboardAvoidingView
+                            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+                        <InputArea>
+                            <Input
+                                IconSvg={RastreioIcon} 
+                                onChangeText={(e) => setRastreio(e)}
+                                keyboardType={'default'}
+                                value={rastreio}
+                            />
+                            <BottomSubmit onPress={() => insertRastreio()}>
+                                <TextSubmit>Salvar Rastreio</TextSubmit>
+                            </BottomSubmit>
+                        </InputArea>
+                       
+                       </KeyboardAvoidingView>
+                    </View>
                 </Modal>
                 
                 <Modal 
