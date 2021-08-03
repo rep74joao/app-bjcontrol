@@ -161,6 +161,13 @@ export default () => (
                 title:'Contas a Pagar',
           
             })}/>
+             <Stack.Screen
+            name={'ContasReceber'}
+            component={ContasReceber}
+            options={({navigation}) => ({
+                title:'Contas a Receber',
+          
+            })}/>
         <Stack.Screen
             name={'Dashboard'}
             component={Dashboard}

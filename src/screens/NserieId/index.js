@@ -4,13 +4,18 @@ import {Container,
     ContainerNserie,
     Imagens, 
     Numero, 
-    Lote, 
+    Lote,
+    ViewText, 
     ContainerFilial, 
     Filial,
     ContainerRastreio,
     Rastreio, 
     ContainerProduto, 
     Editar,
+    Requisicao,
+    Garantia,
+    Pedido,
+    TitleVenda,
     Timeline,
     NTimeline,
     ContainerTimeline,
@@ -60,6 +65,7 @@ const NserieId = () => {
               
             } 
         }
+        console.tron.log(route.params.nserie)
         getNserie();
      },[route.params]);
 
@@ -239,7 +245,7 @@ const NserieId = () => {
                                         horizontal={true}>
                                         {imgnserie && (
                                             imgnserie.map(i => {
-                                                return   <Imgs key={i.id}>
+                                                return  <Imgs key={i.id}>
                                                             <Image 
                                                             source={{uri:'https://erp.bjcontrol.com.br/uploads/1/nserie/'+i.img}} 
                                                             style={{ height: 260, width: 280, borderRadius:15, borderColor:'#ccc', borderWidth:3 }}/>
@@ -262,10 +268,38 @@ const NserieId = () => {
                         <Produto>Produto: {nserie.produto.nome}</Produto>
                     </ContainerProduto>
                     <ContainerRastreio>
-                        <Rastreio>Timeline Rastreio</Rastreio>
+                        <View style={{flexDirection:'row', 
+                                      justifyContent:'space-between', 
+                                      alignItems:'center',
+                                    }}>
+                            <Rastreio>Timeline Rastreio</Rastreio>
+                            {nserie.garantia && (
+                                <Garantia>
+                                    <TitleVenda>
+                                       Garantia: {nserie.garantia}
+                                    </TitleVenda>
+                                </Garantia>
+                            )}
+                            {nserie.pedido && (
+                                <Pedido>
+                                    <TitleVenda>
+                                      Pedido: {nserie.pedido}
+                                   </TitleVenda>
+                                </Pedido>
+                            )}
+                            {nserie.requisicao && (
+                                <Requisicao>
+                                    <TitleVenda>
+                                       Requisição: {nserie.requisicao}
+                                   </TitleVenda>
+                                </Requisicao>
+                            )}
+                        </View>
                         {nserie.rastreio.map((r, index) => {
                             return  <ContainerTimeline key={index}>
-                                        <NTimeline>{index}</NTimeline>
+                                        <ViewText>
+                                            <NTimeline>{index}</NTimeline>
+                                        </ViewText>
                                         <Timeline>
                                             {r.rastreio.replace('</br>', '')} - {r.funcionario}
                                         </Timeline>

@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import styled from 'styled-components/native'
 import Back from '../assets/back.svg';
-import {FlatList, Modal} from 'react-native';
+import {Platform, Modal} from 'react-native';
 import {useNavigation} from '@react-navigation/native'
 import Gradient from './gradientHome'
 import {secundary} from '../config'
@@ -49,13 +49,15 @@ export default function({modalVisible, setModalvisible, cliente}){
     )
 }
 
+const ios = Platform.OS === 'ios' ? '50px' : '11px';
+
 const BackText = styled.Text`
  font-weight: bold;
  color: #fff;
 `
 
 const Title = styled.Text`
-    margin-top: 10px;
+    margin-top: ${ios};
     font-size: 17px;
     font-weight: bold;
     color: ${secundary};
@@ -67,7 +69,7 @@ const BackButton = styled.TouchableOpacity`
   align-items:center;
   justify-content: center;
   position: absolute;
-  top: 9px;
+  top: ${ios};
   background-color:rgba(0,0,0,0.3);
   border-radius:20px;
   left: 9px;

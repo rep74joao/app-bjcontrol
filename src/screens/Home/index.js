@@ -111,9 +111,9 @@ const Home = ({navigation}) => {
 
 
     const sombra = {
-        shadowOpacity: 0.5,
+        shadowOpacity: 0.1,
         shadeColor: '#000',
-        shadowRadius: 50,
+        shadowRadius: 30,
         shadowOffset: {
             height: 10,
             width: 10

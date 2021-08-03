@@ -10,6 +10,40 @@ export const Container = styled.ScrollView`
 
 `
 
+export const Garantia = styled.TouchableOpacity`
+  margin-top:-5px;
+  padding: 5px 10px;
+  width: 170px;
+  border-radius: 5px;
+  height: 30px;
+  background-color: '#FF4848';
+`
+export const Pedido = styled.TouchableOpacity`
+  margin-top:-5px;
+  padding: 5px 10px;
+  width: 170px;
+  border-radius: 5px;
+  height: 30px;
+  background-color: #055052;
+`
+export const Requisicao = styled.TouchableOpacity`
+  margin-top:-5px;
+  padding: 5px 10px;
+  width: 170px;
+  border-radius: 5px;
+  height: 30px;
+  background-color:#F48B29;
+`
+
+export const TitleVenda = styled.Text`
+  font-size: 16px;
+  text-align: center;
+  color: #fff;
+  line-height: 18px;
+
+`
+
+
 export const Imgs = styled.View`
   flex: 1;
   margin: 30px 20px 20px 20px;
@@ -112,11 +146,8 @@ export const ViewModalImg = styled.View`
 
 export const Rastreio = styled.Text`
   font-size: 18px;
-  width: 98%;
   font-weight: bold;
   color: ${secundary};
-  border-bottom-width: 1px;
-  border-color:#ccc;
   margin-bottom:5px;
 `
 
@@ -184,14 +215,22 @@ export const ImgRastreio = styled.TouchableOpacity`
 
 `
 
+export const ViewText = styled.View`
+  margin:0 10px 0 -3px;
+  color: ${secundary};
+  height: 23px;
+  width: 23px;
+  border-radius: 50px;
+  background-color: ${primary};
+  justify-content:center;
+  align-items:center;
+`
+
 export const NTimeline = styled.Text`
   font-size: 15px;
   font-weight: bold;
-  margin:0 10px 0 -3px;
-  color: ${secundary};
-  padding: 2px 6px;
-  border-radius: 15px;
-  background-color: ${primary}
+  
+ 
 `
 
 export const ContainerTimeline = styled.View`
