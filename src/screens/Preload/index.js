@@ -4,11 +4,11 @@ import Container from '../../components/gradient'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import Api from '../../Api'
-import {UserContext} from "../../contexts/UserContext";
+import {useStateValue} from "../../contexts/StateContext";
 
 
 export default () => {
-    const {dispatch} = useContext(UserContext);
+    const [context, dispatch] = useStateValue();
 
     const navigation = useNavigation();
 

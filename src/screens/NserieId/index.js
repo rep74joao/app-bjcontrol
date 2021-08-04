@@ -30,7 +30,7 @@ import {Container,
     Title,
     Produto } from './styles';
 import {useRoute} from '@react-navigation/native'
-import {UserContext} from "../../contexts/UserContext";
+import {useStateValue} from "../../contexts/StateContext";
 import Edit from '../../assets/edit.svg'
 import Img from '../../assets/img.svg'
 import Input from '../../components/input'
@@ -43,7 +43,7 @@ import { Modal, Alert, Image, View, ScrollView, Platform, KeyboardAvoidingView }
 
 
 const NserieId = () => {
-    const {dispatch, state} = useContext(UserContext);
+    const [context, dispatch] = useStateValue();
     const [preloader, setPreloader] = useState(true);
     const [nserie, setNserie] = useState();
     const [rastreio, setRastreio] = useState();
@@ -65,7 +65,7 @@ const NserieId = () => {
               
             } 
         }
-        console.tron.log(route.params.nserie)
+       
         getNserie();
      },[route.params]);
 
@@ -98,8 +98,8 @@ const NserieId = () => {
     async function insertRastreio(){
         const formData = new FormData();
 
-        formData.append('token', state.user.token);
-        formData.append('funcionario_id', state.user.id);
+        formData.append('token', context.user.user.token);
+        formData.append('funcionario_id', context.user.user.id);
         formData.append('numero', nserie.numero);
         formData.append('id', nserie.id);
         formData.append('rastreio', rastreio);

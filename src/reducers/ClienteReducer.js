@@ -1,8 +1,8 @@
-export const initialState = {
-    clientes:'',
+const initialState = {
+    clientes:null,
  }
 
-export const ClienteReducer = (state, action) => {
+export default(state = initialState, action = {}) => {
     switch(action.type){
         case 'setClientes':
             return {...state, clientes:action.payload.clientes};

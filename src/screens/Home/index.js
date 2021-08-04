@@ -23,11 +23,10 @@ import SairIcon from '../../assets/sair.svg';
 import LotesIcon from '../../assets/lote.svg'
 import ContasReceberIcon from '../../assets/contasReceber.svg'
 import ContasPagarIcon from '../../assets/payday.svg'
-import {UserContext} from "../../contexts/UserContext";
+import {useStateValue} from "../../contexts/StateContext";
 import * as Notifications from 'expo-notifications';
 import * as Permissions from 'expo-permissions'
-import {Alert, Platform} from 'react-native'
-import Constants from 'expo-constants';
+
 
 Notifications.setNotificationHandler({
     handleNotification: async () => ({
@@ -39,9 +38,8 @@ Notifications.setNotificationHandler({
 
 
 const Home = ({navigation}) => {
-
+    const [context, dispatch] = useStateValue();
     const [preloader, setPreloader] = useState(true);
-    const {dispatch, state} = useContext(UserContext);
     const [name, setName] = useState(' ');
     const [ola, setOla] = useState(' ');
     const [empresa, setEmpresa] = useState('');
@@ -80,10 +78,10 @@ const Home = ({navigation}) => {
 
     useEffect(() => {
         async function getUser(){
-            
-           if (state.user){
-               const n = state.user.nome.split(' ');
-               const e = state.user.usuario.nome.split(' ');
+          
+           if (context.user.user){
+               const n = context.user.user.nome.split(' ');
+               const e = context.user.user.usuario.nome.split(' ');
                setName(n[0]);
                setEmpresa(`${e[0]} ${e[1]} ${e[2]}`)
            }
@@ -107,7 +105,7 @@ const Home = ({navigation}) => {
         }
  
         getUser();
-     },[state.user]);
+     },[context.user]);
 
 
     const sombra = {

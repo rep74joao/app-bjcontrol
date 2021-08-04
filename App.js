@@ -8,6 +8,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import ClienteProvider from './src/contexts/ClienteContext'
 import UserProvider from './src/contexts/UserContext'
 import NserieProvider from './src/contexts/NserieContext'
+import { StateProvider } from './src/contexts/StateContext';
 import * as Font from 'expo-font';
 import * as Notifications from 'expo-notifications';
 import AppLoading from 'expo-app-loading';
@@ -49,16 +50,14 @@ export default function App(){
     
 
   return (
-    <ClienteProvider>
-     <NserieProvider>
-      <UserProvider>
+ 
+      <StateProvider>
           <StatusBar barStyle={'dark-content'} backgroundColor={primary}/>
           <NavigationContainer>
             <MainStack/>
           </NavigationContainer>
-        </UserProvider>
-     </NserieProvider>
-    </ClienteProvider>
+        </StateProvider>
+ 
     
 );
 };

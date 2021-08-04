@@ -1,8 +1,8 @@
-export const initialState = {
-    nseries:'',
+ const initialState = {
+    nseries:null,
  }
 
-export const NserieReducer = (state, action) => {
+export default(state = initialState, action = {}) => {
     switch(action.type){
         case 'setNseries':
             return {...state, nseries:action.payload.nseries};

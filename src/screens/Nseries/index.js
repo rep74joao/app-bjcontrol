@@ -4,39 +4,36 @@ import Preloader from '../../components/preloader';
 import Nserie from '../../components/nserie';
 import { Container, Search, SearchArea } from './styles';
 import {FlatList} from 'react-native'
-import {UserContext} from "../../contexts/UserContext";
-import {NserieContext} from '../../contexts/NserieContext'
+import {useStateValue} from '../../contexts/StateContext'
 import SearchIcon from '../../assets/search.svg'
 import Api from '../../Api'
 
 
 const Nseries = ({navigation}) => {
-    const user = useContext(UserContext);
-    const nserieAll = useContext(NserieContext);
+    const [context, dispatch] = useStateValue();
+    
     const [preloader, setPreloader] = useState(true);
     const [nseries, setNseries] = useState([]);
     const [nserie, setNserie] = useState([]);
 
     useEffect(() => {
         async function getNseries(){
-            if(nserieAll.state.nseries){
-                setNseries(nserieAll.state.nseries);
+            if(context.nseries.nseries){
+                setNseries(context.nseries.nseries);
                 setPreloader(false);
             }else{
              
                 const formData = new FormData();
 
-                formData.append('token', user.state.user.token);
-                formData.append('id', user.state.user.id);
+                formData.append('token', context.user.user.token);
+                formData.append('id', context.user.user.id);
                 
                 const res = await Api.GetNseries(formData);
                 
                 setNseries(res);
      
-                
-
                 if (res){
-                    nserieAll.dispatch({
+                    dispatch({
                         type: 'setNseries',
                         payload: {
                             nseries: res,

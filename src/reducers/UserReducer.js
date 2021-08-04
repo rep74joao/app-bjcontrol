@@ -1,8 +1,8 @@
-export const initialState = {
+const initialState = {
     user:'',
  }
 
-export const UserReducer = (state, action) => {
+export default (state = initialState, action = {}) => {
     switch(action.type){
         case 'setUser':
             return {...state, user:action.payload.user};
@@ -10,4 +10,5 @@ export const UserReducer = (state, action) => {
         default:
                 return state;
     }
+    return state;
 }

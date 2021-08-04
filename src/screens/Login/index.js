@@ -8,13 +8,14 @@ import Logo from '../../assets/logo.png'
 import Gradient from '../../components/gradient';
 import {Alert, KeyboardAvoidingView, Platform, StatusBar} from 'react-native'
 import Api from '../../Api';
-import {UserContext} from "../../contexts/UserContext";
+import {useStateValue} from "../../contexts/StateContext";
 
 export default () => {
      const [usuario, setUsuario] = useState('');
      const [senha, setSenha] = useState('');
 
-     const {dispatch} = useContext(UserContext);
+     const [context, dispatch] = useStateValue();
+
      const navigation = useNavigation();
 
 

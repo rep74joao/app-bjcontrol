@@ -1,7 +1,5 @@
-import React, {useEffect, useContext, useState} from 'react';
-import { Text } from 'react-native';
+import React, {useEffect, useState} from 'react';
 import Api from '../../Api'
-import {UserContext} from "../../contexts/UserContext";
 import Preloader from '../../components/preloader';
 import {FlatList, TouchableOpacity} from 'react-native'
 import { Container, Search, SearchArea } from './styles';
@@ -9,12 +7,11 @@ import {secundary} from '../../config'
 import ClientesList from '../../components/cliente'
 import SearchIcon from '../../assets/search.svg'
 import {useRoute, useNavigation} from '@react-navigation/native'
-import {ClienteContext} from '../../contexts/ClienteContext'
+import {useStateValue} from '../../contexts/StateContext'
 
 
 const ClientesAll = () => {
-    const user = useContext(UserContext);
-    const client = useContext(ClienteContext);
+    const [context, dispatch] = useStateValue();
     
     const [clientes, setClientes] = useState([]);
     const [cliente, setCliente] = useState([]);
@@ -27,20 +24,22 @@ const ClientesAll = () => {
 
     useEffect(() => {
         async function getClientes(){
-            if(client.state.clientes){
-                setClientes(client.state.clientes);
+           
+            if(context.clientes.clientes){
+                setClientes(context.clientes.clientes);
                 setPreloader(false);
             }else{
-                const formData = new FormData();
-
-            formData.append('token', user.state.user.token);
-            formData.append('id', user.state.user.id);
-            formData.append('usuarios_id', user.state.user.usuarios_id);
+            
+            const formData = new FormData();
+                    
+            formData.append('token', context.user.user.token);
+            formData.append('id', context.user.user.id);
+            formData.append('usuarios_id', context.user.user.usuarios_id);
 
             const res = await Api.GetClientes(formData);
 
             if (res){
-                client.dispatch({
+                dispatch({
                     type: 'setClientes',
                     payload: {
                         clientes: res,
@@ -75,10 +74,10 @@ const ClientesAll = () => {
     //buscar cliente 
     useEffect(() => {
         if(searchCliente === ''){
-            setClientes(client.state.clientes)
+            setClientes(context.clientes.clientes)
         }else{
             setClientes(
-                client.state.clientes.filter((c) => 
+                context.clientes.clientes.filter((c) => 
                     c.nome.toLowerCase().indexOf(searchCliente.toLocaleLowerCase()) > -1
                 )
             );    
